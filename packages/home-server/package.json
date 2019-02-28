@@ -1,0 +1,27 @@
+{
+  "name": "@home/server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev src/bin"
+  },
+  "dependencies": {
+    "@home/client": "^1.0.0",
+    "@home/sdk": "^1.0.0",
+    "commander": "^2.19.0",
+    "express": "^4.16.4",
+    "jsondiffpatch": "^0.3.11",
+    "redux": "^4.0.1",
+    "socket.io": "^2.2.0",
+    "webpack": "^4.29.5",
+    "webpack-dev-middleware": "^3.6.0"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/express": "^4.16.1",
+    "@types/socket.io": "^2.1.2",
+    "@types/webpack": "^4.4.25",
+    "@types/webpack-dev-server": "^3.1.2"
+  }
+}
