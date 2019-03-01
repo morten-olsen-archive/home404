@@ -1,4 +1,5 @@
 import { Controller } from '@home/sdk';
+import console = require('console');
 
 class Demo extends Controller {
   async setup() {
@@ -15,7 +16,17 @@ class Demo extends Controller {
       setTimeout(updateState, 2000);
     };
 
+    this.data = {
+      hello: Math.random(),
+    };
+
+    await this.save();
+
     updateState();
+  }
+
+  stateDidChange() {
+    console.log('state', this.state);
   }
 }
 

@@ -11,6 +11,7 @@
     "@home/sdk": "^1.0.0",
     "commander": "^2.19.0",
     "express": "^4.16.4",
+    "fs-extra": "^7.0.1",
     "jsondiffpatch": "^0.3.11",
     "redux": "^4.0.1",
     "socket.io": "^2.2.0",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@types/commander": "^2.12.2",
     "@types/express": "^4.16.1",
+    "@types/fs-extra": "^5.0.5",
     "@types/socket.io": "^2.1.2",
     "@types/webpack": "^4.4.25",
     "@types/webpack-dev-server": "^3.1.2"

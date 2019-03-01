@@ -1,5 +1,6 @@
 import runners from './runners';
 import { Middleware } from 'redux';
+import { EventEmitter } from 'events';
 
 export interface ControllerType {
   type: string;
@@ -13,14 +14,25 @@ export interface Options {
 }
 
 const controllerMiddleware = (options: Options): Middleware => (store) => (next) => {
+  const emitter = new EventEmitter();
   setTimeout(() => {
     options.controllers.forEach((controller) => {
       const runner = runners[controller.type];
-      runner(controller.name, controller.options, controller.config, store);
+      runner({
+        name: controller.name,
+        options: controller.options,
+        config: controller.config,
+        store: store,
+        emitter,
+      });
     });
   }, 10);
   return (action) => {
-    return next(action);
+    const result = next(action);
+    Promise.resolve(result).then(() => {
+      emitter.emit('STATE_UPDATED', store.getState());
+    });
+    return result;
   };
 };
 

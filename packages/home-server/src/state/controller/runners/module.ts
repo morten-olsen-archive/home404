@@ -1,7 +1,11 @@
 import path from 'path';
+import fs from 'fs-extra';
 import { MiddlewareAPI } from 'redux';
-import { Api } from '@home/sdk';
+import { Api, Controller } from '@home/sdk';
 import Runner from './Runner';
+import config from '../../../config';
+
+const jsondiffpatch = require('jsondiffpatch');
 
 export interface Config {
   location: string;
@@ -24,14 +28,26 @@ const createApi = (name: string, store: MiddlewareAPI): Api => {
     setDeviceInfo: async (id, info) => dispatch('@@DEVICES/UPDATE_INFO', id, info),
     setDeviceState: async (id, state) => dispatch('@@DEVICES/UPDATE_STATE', id, state),
     removeDevice: async (id) => dispatch('@@DEVICES/REMOVE', id,),
+    saveData: async (data) => {
+      const directory = path.join(config.storageLocation, 'controller-data', name);
+      await fs.mkdirp(directory);
+      const file = path.join(directory, 'data.json');
+      await fs.writeJSON(file, data);
+    }
   };
 }
 
-const moduleRunner: Runner<Config> = (name, options, config, store) => {
+const moduleRunner: Runner<Config> = ({ name, options, config, store, emitter }) => {
   const location = path.resolve(options.location);
   const Module = require(location);
   const api = createApi(name, store);
-  const instance = new (Module.default || Module)(api, config);
+  const instance: Controller = new (Module.default || Module)(api, config);
+  let currentState = store.getState();
+  emitter.on('STATE_UPDATED', (state) => {
+    const diff = jsondiffpatch.diff(currentState, state);
+    instance.patchState(diff);
+  });
+  instance.state = store.getState();
   instance.setup();
 };
 

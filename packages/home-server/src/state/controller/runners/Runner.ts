@@ -1,5 +1,14 @@
+import { EventEmitter } from 'events';
 import { MiddlewareAPI } from 'redux';
 
-type Runner<ConfigType = any> = (name: string, options: ConfigType, config: any, store: MiddlewareAPI) => void;
+export interface Options<ConfigType> {
+  name: string;
+  options: ConfigType;
+  config: any;
+  store: MiddlewareAPI;
+  emitter: EventEmitter;
+}
+
+type Runner<ConfigType = any> = (options: Options<ConfigType>) => void;
 
 export default Runner;
