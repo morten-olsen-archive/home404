@@ -1,5 +1,5 @@
 import path from 'path';
-import { Configuration } from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import HtmlPlugin from 'html-webpack-plugin';
 
 const configuration: Configuration = {
@@ -13,25 +13,32 @@ const configuration: Configuration = {
     modules: [
       path.join(__dirname, '../../node_modules'),
     ],
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
   module: {
     rules: [{
-      loader: 'babel-loader',
       test: /\.tsx?$/,
       include: [
         path.join(__dirname, 'src'),
       ],
+      loader: 'babel-loader',
       options: {
+        cacheDirectory: true,
+        babelrc: false,
         presets: [
           '@babel/preset-env',
           '@babel/preset-react',
           '@babel/preset-typescript',
         ],
-      }
+        plugins: ['react-hot-loader/babel'],
+      },
     }],
   },
   plugins: [
     new HtmlPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };
 

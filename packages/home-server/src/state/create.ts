@@ -1,26 +1,34 @@
 import path from 'path';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Server } from 'http';
+import * as devices from './devices';
 import * as socket from './socket';
 import * as controller from './controller';
+import extenders from './extenders';
+
+const config = {
+  controllers: [{
+    type: 'module',
+    name: 'demo',
+    options: {
+      location: path.join(__dirname, '../../../../controllers/demo'),
+    },
+    config: {
+      hello: 'world',
+    }
+  }],
+};
 
 const create = (server: Server) => {
-  const reducer = (state: any, action: any) => action;
+  const reducer = combineReducers({
+    devices: devices.reducer,
+  });
   const store = createStore(
-    reducer,
+    extenders(reducer),
     applyMiddleware(
       socket.middleware(server),
       controller.middleware({
-        controllers: [{
-          type: 'module',
-          name: 'demo',
-          options: {
-            location: path.join(__dirname, '../../../../controllers/demo'),
-          },
-          config: {
-            hello: 'world',
-          }
-        }],
+        controllers: config.controllers,
       }),
     ),
   );

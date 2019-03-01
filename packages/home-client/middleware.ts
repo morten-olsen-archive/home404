@@ -1,14 +1,17 @@
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import configuration from './webpack.config';
 
-const create = () => {
+export const createMiddleware = () => {
   const bundler = webpack(configuration);
-  const middleware = webpackDevMiddleware(bundler, {
+  const dev = webpackDevMiddleware(bundler, {
     // logLevel: 'error',
     publicPath: '/',
   });
-  return middleware;
+  const hot = webpackHotMiddleware(bundler);
+  return {
+    dev,
+    hot,
+  };
 };
-
-export default create;

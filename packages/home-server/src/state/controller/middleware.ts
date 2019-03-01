@@ -13,10 +13,12 @@ export interface Options {
 }
 
 const controllerMiddleware = (options: Options): Middleware => (store) => (next) => {
-  options.controllers.forEach((controller) => {
-    const runner = runners[controller.type];
-    runner(controller.name, controller.options, controller.config, store);
-  });
+  setTimeout(() => {
+    options.controllers.forEach((controller) => {
+      const runner = runners[controller.type];
+      runner(controller.name, controller.options, controller.config, store);
+    });
+  }, 10);
   return (action) => {
     return next(action);
   };
