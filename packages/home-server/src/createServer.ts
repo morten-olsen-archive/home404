@@ -15,7 +15,10 @@ const create = (config: Configuration) => {
   }
   createStore(server, config);
 
-  return app;
+  return {
+    server,
+    app,
+  };
 };
 
 export default create;

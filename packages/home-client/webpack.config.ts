@@ -7,12 +7,12 @@ const configuration: Configuration = {
     path.join(__dirname, 'src/index.tsx'),
   ],
   mode: 'development',
-  context: __dirname,
+  context: path.join(__dirname, '../../..'),
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
-    modules: [
-      path.join(__dirname, '../../node_modules'),
-    ],
+    /*modules: [
+      path.join(__dirname, '../../../node_modules'),
+    ],*/
     alias: {
       'react-dom': '@hot-loader/react-dom',
     },

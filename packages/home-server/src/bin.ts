@@ -19,7 +19,7 @@ start.option('-p --port <port>', 'port to listen on', parseInt, 5003);
 start.action(action(async ({ config, port }) => {
   const configLocation = path.resolve(config);
   const configuration = require(configLocation);
-  const server = createServer(configuration.default || configuration);
+  const { server } = createServer(configuration.default || configuration);
   server.listen(port, () => {
     logger.info(`Server started on port ${port}`);
   });

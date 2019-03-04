@@ -47,6 +47,7 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "devDependencies": {
+    "@home/base": "^1.0.0",
     "@types/commander": "^2.12.2",
     "@types/webpack": "^4.4.25",
     "webpack-cli": "^3.2.3",
