@@ -6,8 +6,7 @@
     "dev": "lerna run dev --stream"
   },
   "workspaces": [
-    "packages/*",
-    "controllers/*"
+    "packages/*"
   ],
   "devDependencies": {
     "@types/jest": "^24.0.9",

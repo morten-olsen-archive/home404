@@ -1,25 +1,13 @@
 import path from 'path';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Server } from 'http';
+import { Configuration } from '..';
 import * as devices from './devices';
 import * as socket from './socket';
 import * as controller from './controller';
 import extenders from './extenders';
 
-const config = {
-  controllers: [{
-    type: 'module',
-    name: 'demo',
-    options: {
-      location: path.join(__dirname, '../../../../controllers/demo'),
-    },
-    config: {
-      hello: 'world',
-    }
-  }],
-};
-
-const create = (server: Server) => {
+const create = (server: Server, config: Configuration) => {
   const reducer = combineReducers({
     devices: devices.reducer,
   });

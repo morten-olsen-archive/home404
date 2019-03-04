@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/bin"
+    "dev": "ts-node-dev src/bin start -c config.demo.ts"
   },
   "dependencies": {
     "@home/client": "^1.0.0",
+    "@home/controller-demo": "^1.0.0",
     "@home/sdk": "^1.0.0",
     "commander": "^2.19.0",
     "express": "^4.16.4",
@@ -16,7 +17,8 @@
     "redux": "^4.0.1",
     "socket.io": "^2.2.0",
     "webpack": "^4.29.5",
-    "webpack-dev-middleware": "^3.6.0"
+    "webpack-dev-middleware": "^3.6.0",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/commander": "^2.12.2",

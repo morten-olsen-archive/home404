@@ -38,7 +38,7 @@ const createApi = (name: string, store: MiddlewareAPI): Api => {
 }
 
 const moduleRunner: Runner<Config> = ({ name, options, config, store, emitter }) => {
-  const location = path.resolve(options.location);
+  const location = require.resolve(options.location);
   const Module = require(location);
   const api = createApi(name, store);
   const instance: Controller = new (Module.default || Module)(api, config);

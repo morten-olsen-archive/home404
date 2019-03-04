@@ -1,0 +1,9 @@
+{
+  "name": "@home/controller-demo",
+  "version": "1.0.0",
+  "main": "src/",
+  "license": "MIT",
+  "dependencies": {
+    "@home/sdk": "^1.0.0"
+  }
+}
