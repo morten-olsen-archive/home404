@@ -3,7 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "lerna run dev --stream"
+    "dev": "lerna run dev --stream",
+    "build": "lerna run build",
+    "cleanup": "lerna run cleanup"
   },
   "workspaces": [
     "packages/*"

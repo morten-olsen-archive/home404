@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev src/bin start -c config.demo.ts"
+    "dev": "ts-node-dev src/bin start -c config.demo.ts",
+    "build": "tsc --skipLibCheck",
+    "cleanup": "find ./src -name '*.js' -delete"
   },
   "dependencies": {
     "@home/client": "^1.0.0",

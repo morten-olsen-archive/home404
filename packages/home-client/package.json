@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "middleware",
   "license": "MIT",
+  "scripts": {
+    "cleanup": "find ./src -name '*.js' -delete"
+  },
   "dependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",

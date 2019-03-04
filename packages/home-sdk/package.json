@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "src",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc --skipLibCheck",
+    "cleanup": "find ./src -name '*.js' -delete"
+  },
   "dependencies": {
     "@types/express": "^4.16.1",
     "@types/webpack": "^4.4.25",

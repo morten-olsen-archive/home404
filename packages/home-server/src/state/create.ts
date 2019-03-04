@@ -12,7 +12,7 @@ const create = (server: Server, config: Configuration) => {
     devices: devices.reducer,
   });
   const store = createStore(
-    extenders(reducer),
+    extenders(reducer, config.reducers || {}),
     applyMiddleware(
       socket.middleware(server),
       controller.middleware({
