@@ -3,8 +3,9 @@ import Api from './Api';
 import Device from './Device';
 import middleware from './state/middleware';
 import reducer from './state/reducer';
+import State, { Data } from './State';
 
-type Reducer<StateType = any> = ((state: StateType) => any) | string;
+type Reducer = ((state: Data) => any) | string;
 
 export {
   Controller,
@@ -13,4 +14,6 @@ export {
   middleware,
   reducer,
   Reducer,
+  State,
+  Data,
 };

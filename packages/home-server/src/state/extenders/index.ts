@@ -17,6 +17,9 @@ const extenderReducer = (reducer: Reducer, extenders: {[name: string]: Extender}
   }, normalizedExtenders);
 
   return (state = {}, action) => {
+    if (action.type === '@@STATE/REPLACE') {
+      state = { data: action.payload };
+    }
     const newState = reducer(state.data, action);
     const extended = extenderNames.reduce((output, name) => ({
       ...output,
