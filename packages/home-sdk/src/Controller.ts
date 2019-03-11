@@ -5,18 +5,24 @@ const jsondiffpatch = require('jsondiffpatch');
 abstract class Controller<ConfigType = any, DataType = any, StateType = any> {
   protected api: Api;
   protected config: ConfigType;
-  protected data?: DataType;
+  protected data: DataType;
   public state?: StateType;
 
   public stateDidChange?(state: StateType): void;
 
+  abstract get defaultData(): DataType;
+
   constructor(api: Api, config: ConfigType, data?: DataType) {
     this.api = api;
     this.config = config;
-    this.data = data;
+    this.data = data as DataType;
   }
 
   abstract setup(): Promise<void>;
+
+  setData(data: DataType) {
+    this.data = data;
+  }
 
   async patchState(diff: any) {
     const state = jsondiffpatch.patch(this.state, diff);

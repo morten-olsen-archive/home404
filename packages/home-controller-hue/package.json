@@ -1,0 +1,13 @@
+{
+  "name": "@home/controller-hue",
+  "version": "1.0.0",
+  "main": "src/",
+  "license": "MIT",
+  "dependencies": {
+    "@home/sdk": "^1.0.0",
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0"
+  }
+}
