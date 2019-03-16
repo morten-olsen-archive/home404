@@ -24,7 +24,7 @@ class AppleTVController extends Controller<any, DataType> {
     devices.forEach((device) => {
       this.devices[device.uid] = device;
     });
-    await Promise.all(devices.map(this.setupTV));
+    await Promise.all(Object.keys(this.devices).map(name => this.setupTV(this.devices[name])));
   }
 
   setupTV = async (device: AppleTV) => {
@@ -42,6 +42,7 @@ class AppleTVController extends Controller<any, DataType> {
   }
 
   async pairDevice(device: AppleTV) {
+    await device.openConnection();
     const callback = await device.pair();
     this.loginRequests[device.uid] = callback;
   }
@@ -50,11 +51,11 @@ class AppleTVController extends Controller<any, DataType> {
     const id = device.uid;
     const login = this.data.logins[id];
     await device.openConnection(parseCredentials(login));
-    device.on('nowPlaying', this.onNowPlaying);
+    device.on('nowPlaying', (info) => this.onNowPlaying(device, info));
   }
   
-  onNowPlaying(playing: NowPlayingInfo) {
-    console.log('playing', playing);
+  onNowPlaying = (device: AppleTV, playing: NowPlayingInfo) => {
+    this.api.setDeviceState(device.uid, playing);
   }
 
   async onAction(action: any) {
@@ -62,6 +63,7 @@ class AppleTVController extends Controller<any, DataType> {
       const device = await this.loginRequests[action.device](action.pincode)
       this.data.logins[device.uid] = device.credentials.toString();
       await this.save();
+      await this.connectDevice(device);
     }
   }
 }

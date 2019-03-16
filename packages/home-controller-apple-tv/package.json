@@ -2,5 +2,8 @@
   "name": "@home/controller-apple-tv",
   "version": "1.0.0",
   "main": "src",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "node-appletv": "^1.0.10"
+  }
 }
