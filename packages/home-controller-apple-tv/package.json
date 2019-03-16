@@ -1,6 +1,6 @@
 {
   "name": "@home/controller-apple-tv",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "main": "src",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,7 @@
     "cleanup": "find ./src -name '*.js' -delete"
   },
   "dependencies": {
-    "node-appletv": "^1.0.10",
-    "@home/sdk": "0.0.2-alpha.1"
+    "@home/sdk": "0.0.2-alpha.1",
+    "node-appletv": "^1.0.10"
   }
 }
