@@ -1,6 +1,6 @@
 {
   "name": "@home/controller-hue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "src/",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,7 @@
     "cleanup": "find ./src -name '*.js' -delete"
   },
   "dependencies": {
-    "@home/sdk": "^0.1.0",
+    "@home/sdk": "^0.1.1",
     "@types/deep-equal": "^1.0.1",
     "axios": "^0.18.0",
     "deep-equal": "^1.0.1"
