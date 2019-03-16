@@ -14,7 +14,7 @@
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
-    "@home/base": "0.0.2-alpha.1",
+    "@home/base": "^0.1.0",
     "@types/commander": "^2.12.2"
   }
 }

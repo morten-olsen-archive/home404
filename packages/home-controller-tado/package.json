@@ -1,5 +1,5 @@
 {
-  "name": "home-controller-tado",
+  "name": "@home/controller-tado",
   "version": "0.1.0",
   "main": "index.js",
   "license": "MIT"
