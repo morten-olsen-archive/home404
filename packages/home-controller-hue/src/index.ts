@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Controller } from '@home/sdk';
+import equal from 'deep-equal'
 import console = require('console');
 
 interface BridgeDto {
@@ -71,25 +72,30 @@ class HueController extends Controller<any, DataType> {
     await this.api.setDeviceState(uid, {
       connected: 'connected',
     });
-    await this.addDevices(internalipaddress, settings.username);
+    await this.addDevices(uid, internalipaddress, settings.username);
     await this.updateDevices(internalipaddress, settings.username);
   }
 
   cachedSetState = async (id: string, state: any) => {
-    if (this.stateCache[id] !== state) {
-      await this.api.setDeviceState(id, state);
+    if (!equal(this.stateCache[id], state)) {
+      await this.api.setDeviceState(id, {
+        ...state,
+        test: Math.random(),
+      });
       this.stateCache[id] = state;
     }
   }
 
-  addDevices = async (ip: string, username: string) => {
+  addDevices = async (uid: string, ip: string, username: string) => {
     const { data: lights} = await axios.get(`http://${ip}/api/${username}/lights`);
     await Promise.all(Object.keys(lights).map(async (id) => {
       await this.api.addDevice(`light-${id}`, {
         name: lights[id].name,
         productname: lights[id].productname,
         type: 'light',
+        bridge: uid,
         internalId: id,
+        ip,
       })
     }));
 
@@ -99,7 +105,9 @@ class HueController extends Controller<any, DataType> {
         name: sensors[id].name,
         productname: sensors[id].productname,
         type: 'sensor',
+        bridge: uid,
         internalId: id,
+        ip,
       })
     }));
   }
@@ -114,6 +122,16 @@ class HueController extends Controller<any, DataType> {
     await Promise.all(Object.keys(sensors).map(async (id) => {
       await this.cachedSetState(`sensor-${id}`, sensors[id].state);
     }));
+
+    setTimeout(() => this.updateDevices(ip, username), 2000);
+  }
+
+  onAction(actions: any[]) {
+    actions.map(async (action: any) => {
+      const { id, bridge, type, state, ip } = action;
+      const { username } = this.data.bridges[bridge];
+      await axios.put(`http://${ip}/api/${username}/${type}/${id}/state`, state);
+    });
   }
 }
 

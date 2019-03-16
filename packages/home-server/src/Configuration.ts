@@ -1,4 +1,4 @@
-import { Reducer } from '@home/sdk';
+import { Reducer, Automation } from '@home/sdk';
 
 interface BaseController {
   name: string;
@@ -19,7 +19,8 @@ type Controller = ModuleController;
 
 interface Configuration {
   controllers?: Controller[],
-  reducers?: {[name: string]: Reducer<any>},
+  reducers?: {[name: string]: Reducer},
+  automations?: Automation[],
   includeClient?: 'dev',
 };
 

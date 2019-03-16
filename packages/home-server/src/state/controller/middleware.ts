@@ -1,7 +1,8 @@
-import runners from './runners';
+import runners, { Runner } from './runners';
 import { Middleware } from 'redux';
 import { EventEmitter } from 'events';
 import { Configuration } from '../..';
+import console = require('console');
 
 const controllerMiddleware = ({ controllers }: Configuration): Middleware => (store) => (next) => {
   const emitter = new EventEmitter();
@@ -21,9 +22,13 @@ const controllerMiddleware = ({ controllers }: Configuration): Middleware => (st
   }, 10);
   return (action) => {
     const result = next(action);
-    Promise.resolve(result).then(() => {
-      emitter.emit('STATE_UPDATED', store.getState());
-    });
+    if (action.type === '@@DEVICE/ACTION') {
+      emitter.emit('ACTION_DISPATCHED', action.meta.owner, action.payload);
+    } else {
+      Promise.resolve(result).then(() => {
+        emitter.emit('STATE_UPDATED', store.getState());
+      });
+    }
     return result;
   };
 };

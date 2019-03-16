@@ -56,6 +56,13 @@ const moduleRunner: Runner<Config> = ({ name, options, config, store, emitter })
     const diff = jsondiffpatch.diff(currentState, state);
     instance.patchState(diff);
   });
+  emitter.on('ACTION_DISPATCHED', (owner, action) => {
+    if (owner === name) {
+      if (instance.onAction) {
+        instance.onAction(action);
+      }
+    }
+  });
   instance.state = store.getState();
   instance.setup();
 };

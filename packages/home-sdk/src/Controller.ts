@@ -35,6 +35,8 @@ abstract class Controller<ConfigType = any, DataType = any, StateType = any> {
   async save() {
     await this.api.saveData(this.data);
   }
+
+  onAction?(action: any): void;
 }
 
 export default Controller;

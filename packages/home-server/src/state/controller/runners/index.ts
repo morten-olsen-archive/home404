@@ -5,4 +5,8 @@ const runners: {[name: string]: Runner} = {
   module,
 };
 
+export {
+  Runner,
+};
+
 export default runners;

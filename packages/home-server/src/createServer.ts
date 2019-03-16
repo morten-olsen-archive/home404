@@ -13,11 +13,12 @@ const create = (config: Configuration) => {
     app.use(dev);
     app.use(hot);
   }
-  createStore(server, config);
+  const store = createStore(server, config);
 
   return {
     server,
     app,
+    store,
   };
 };
 

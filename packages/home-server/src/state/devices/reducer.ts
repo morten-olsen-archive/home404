@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { Device } from '@home/sdk';
+import console = require('console');
 
 const deviceReducer: Reducer<Device[]> = (state = [], action) => {
   const { type } = action;
