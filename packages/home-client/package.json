@@ -1,6 +1,6 @@
 {
   "name": "@home/client",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "middleware",
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,7 @@
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
-    "@home/sdk": "^1.0.0",
+    "@home/sdk": "^0.0.1",
     "@hot-loader/react-dom": "^16.8.3",
     "@types/express": "^4.16.1",
     "@types/html-webpack-plugin": "^3.2.0",
@@ -48,7 +48,7 @@
     "webpack-hot-middleware": "^2.24.3"
   },
   "devDependencies": {
-    "@home/base": "^1.0.0",
+    "@home/base": "^0.0.1",
     "@types/commander": "^2.12.2",
     "@types/webpack": "^4.4.25",
     "webpack-cli": "^3.2.3",

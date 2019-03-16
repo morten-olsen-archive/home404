@@ -1,6 +1,6 @@
 {
   "name": "@home/sdk",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "src",
   "license": "MIT",
   "scripts": {
@@ -14,7 +14,7 @@
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
-    "@home/base": "^1.0.0",
+    "@home/base": "^0.0.1",
     "@types/commander": "^2.12.2"
   }
 }

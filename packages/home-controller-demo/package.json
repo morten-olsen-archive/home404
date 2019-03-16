@@ -1,6 +1,6 @@
 {
   "name": "@home/controller-demo",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "src/",
   "license": "MIT",
   "scripts": {
@@ -8,9 +8,9 @@
     "cleanup": "find ./src -name '*.js' -delete"
   },
   "dependencies": {
-    "@home/sdk": "^1.0.0"
+    "@home/sdk": "^0.0.1"
   },
   "devDependencies": {
-    "@home/base": "^1.0.0"
+    "@home/base": "^0.0.1"
   }
 }

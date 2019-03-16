@@ -1,6 +1,6 @@
 {
   "name": "@home/base",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "devDependencies": {
     "@types/jest": "^24.0.9",
     "@types/node": "^11.9.5",
@@ -12,6 +12,6 @@
     "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "@home/sdk": "^1.0.0"
+    "@home/sdk": "^0.0.1"
   }
 }
