@@ -7,6 +7,7 @@ export interface Options<ConfigType> {
   config: any;
   store: MiddlewareAPI;
   emitter: EventEmitter;
+  storageLocation: string;
 }
 
 type Runner<ConfigType = any> = (options: Options<ConfigType>) => void;

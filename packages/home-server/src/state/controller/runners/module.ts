@@ -3,7 +3,6 @@ import fs from 'fs-extra';
 import { MiddlewareAPI } from 'redux';
 import { Api, Controller } from '@home/sdk';
 import Runner from './Runner';
-import globalConfig from '../../../config';
 import console = require('console');
 
 const jsondiffpatch = require('jsondiffpatch');
@@ -13,7 +12,7 @@ export interface Config {
   config: any
 }
 
-const createApi = (name: string, store: MiddlewareAPI): Api => {
+const createApi = (name: string, store: MiddlewareAPI, storageLocation: string): Api => {
   const dispatch = (type: string, id: string, payload? : any) => {
     store.dispatch({
       type,
@@ -30,7 +29,7 @@ const createApi = (name: string, store: MiddlewareAPI): Api => {
     setDeviceState: async (id, state) => dispatch('@@DEVICES/UPDATE_STATE', id, state),
     removeDevice: async (id) => dispatch('@@DEVICES/REMOVE', id,),
     saveData: async (data) => {
-      const directory = path.join(globalConfig.storageLocation, 'controller-data', name);
+      const directory = path.join(storageLocation, 'controller-data', name);
       await fs.mkdirp(directory);
       const file = path.join(directory, 'data.json');
       await fs.writeJSON(file, data);
@@ -38,13 +37,13 @@ const createApi = (name: string, store: MiddlewareAPI): Api => {
   };
 }
 
-const moduleRunner: Runner<Config> = ({ name, options, config, store, emitter }) => {
+const moduleRunner: Runner<Config> = ({ name, options, config, store, emitter, storageLocation }) => {
   const location = require.resolve(options.location);
   const Module = require(location);
-  const api = createApi(name, store);
+  const api = createApi(name, store, storageLocation);
   const instance: Controller = new (Module.default || Module)(api, config);
 
-  const datalocation = path.join(globalConfig.storageLocation, 'controller-data', name, 'data.json');
+  const datalocation = path.join(storageLocation, 'controller-data', name, 'data.json');
   if (fs.existsSync(datalocation)) {
     const raw = fs.readFileSync(datalocation, 'utf-8');
     instance.setData(JSON.parse(raw));

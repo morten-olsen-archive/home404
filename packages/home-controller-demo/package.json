@@ -8,9 +8,9 @@
     "cleanup": "find ./src -name '*.js' -delete"
   },
   "dependencies": {
-    "@home/sdk": "^0.0.1"
+    "@home/sdk": "0.0.2-alpha.1"
   },
   "devDependencies": {
-    "@home/base": "^0.0.1"
+    "@home/base": "0.0.2-alpha.1"
   }
 }

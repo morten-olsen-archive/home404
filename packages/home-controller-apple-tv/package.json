@@ -8,6 +8,7 @@
     "cleanup": "find ./src -name '*.js' -delete"
   },
   "dependencies": {
-    "node-appletv": "^1.0.10"
+    "node-appletv": "^1.0.10",
+    "@home/sdk": "0.0.2-alpha.1"
   }
 }

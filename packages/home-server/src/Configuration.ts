@@ -21,6 +21,7 @@ interface Configuration {
   controllers?: Controller[],
   reducers?: {[name: string]: Reducer},
   automations?: Automation[],
+  dataLocation?: string,
   includeClient?: 'dev',
 };
 

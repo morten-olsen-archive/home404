@@ -1,10 +1,14 @@
 import runners, { Runner } from './runners';
+import path from 'path';
 import { Middleware } from 'redux';
 import { EventEmitter } from 'events';
 import { Configuration } from '../..';
 import console = require('console');
 
-const controllerMiddleware = ({ controllers }: Configuration): Middleware => (store) => (next) => {
+const controllerMiddleware = ({
+  controllers,
+  dataLocation = path.join(process.cwd(), './configs'),
+}: Configuration): Middleware => (store) => (next) => {
   const emitter = new EventEmitter();
   setTimeout(() => {
     if (controllers) {
@@ -15,6 +19,7 @@ const controllerMiddleware = ({ controllers }: Configuration): Middleware => (st
           options: controller.options,
           config: controller.config,
           store: store,
+          storageLocation: dataLocation,
           emitter,
         });
       });
