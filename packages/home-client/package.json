@@ -4,6 +4,7 @@
   "main": "middleware",
   "license": "MIT",
   "scripts": {
+    "build": "tsc --skipLibCheck",
     "cleanup": "find ./src -name '*.js' -delete"
   },
   "dependencies": {

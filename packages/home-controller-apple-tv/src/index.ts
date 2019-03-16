@@ -2,11 +2,6 @@ import { scan, parseCredentials, NowPlayingInfo, AppleTV } from 'node-appletv';
 import { Controller } from '@home/sdk';
 import console = require('console');
 
-interface BridgeDto {
-  id: string;
-  internalipaddress: string;
-}
-
 interface DataType {
   logins: {[name: string]: any}
 };
@@ -30,7 +25,7 @@ class AppleTVController extends Controller<any, DataType> {
   setupTV = async (device: AppleTV) => {
     const id = device.uid;
     const login = this.data.logins[id];
-    this.api.addDevice(id, {
+    await this.api.addDevice(id, {
       connected: false,
       paired: !!login,
     });
@@ -51,6 +46,10 @@ class AppleTVController extends Controller<any, DataType> {
     const id = device.uid;
     const login = this.data.logins[id];
     await device.openConnection(parseCredentials(login));
+    await this.api.setDeviceInfo(id, {
+      connected: true,
+      paired: true,
+    });
     device.on('nowPlaying', (info) => this.onNowPlaying(device, info));
   }
   

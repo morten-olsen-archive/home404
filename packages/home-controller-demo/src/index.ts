@@ -2,6 +2,7 @@ import { Controller } from '@home/sdk';
 import console = require('console');
 
 class Demo extends Controller {
+  defaultData: any;
   async setup() {
     console.log('config', this.config);
 
