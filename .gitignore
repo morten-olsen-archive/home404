@@ -2,3 +2,4 @@ node_modules
 lerna-debug.log
 yarn-error.log
 packages/**/src/**/*.js
+packages/**/src/**/*.d.ts

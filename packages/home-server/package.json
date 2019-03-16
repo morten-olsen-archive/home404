@@ -1,6 +1,6 @@
 {
   "name": "@home/server",
-  "version": "0.0.1",
+  "version": "0.0.2-alpha.2+1f2d7ae",
   "main": "src/",
   "license": "MIT",
   "scripts": {
@@ -33,5 +33,6 @@
     "@types/socket.io": "^2.1.2",
     "@types/webpack": "^4.4.25",
     "@types/webpack-dev-server": "^3.1.2"
-  }
+  },
+  "gitHead": "1f2d7ae785977d1d7ad786d30ad453f464929344"
 }
