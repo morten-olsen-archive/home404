@@ -8,11 +8,14 @@ import * as socket from './socket';
 import * as controller from './controller';
 import extenders from './extenders';
 
+const remotedev = require('remotedev-server');
+remotedev({ hostname: 'localhost', port: 8001 });
+
 const composeEnhancers = composeWithDevTools({
   realtime: true,
   name: 'Your Instance Name',
   hostname: 'localhost',
-  port: 8000 // the port your remotedev server is running at
+  port: 8001 // the port your remotedev server is running at
 })
 
 const create = <ExtenderType = {[name: string]: any}>(server: Server | undefined, config: Configuration) => {

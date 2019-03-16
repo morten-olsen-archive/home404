@@ -10,6 +10,7 @@ const deviceReducer: Reducer<Device[]> = (state = [], action) => {
           owner: action.meta.owner,
           id: action.meta.id,
           info: action.payload,
+          state: {},
         }
       ];
     }

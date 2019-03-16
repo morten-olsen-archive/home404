@@ -5,7 +5,7 @@ import middleware from './state/middleware';
 import reducer from './state/reducer';
 import State, { Data } from './State';
 
-type Reducer = ((state: Data) => any) | string;
+type Reducer = ((state: Data, action?: any) => any) | string;
 
 export {
   Controller,
