@@ -1,0 +1,9 @@
+{
+  "name": "@home/controller-tado",
+  "version": "0.1.1",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@home/base": "^0.1.1"
+  }
+}

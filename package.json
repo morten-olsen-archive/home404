@@ -8,6 +8,7 @@
     "cleanup": "lerna run cleanup"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "example/*"
   ]
 }
