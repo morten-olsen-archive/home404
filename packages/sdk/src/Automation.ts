@@ -21,7 +21,7 @@ class AutomationRule extends EventEmitter {
     return this.state ? this.state.extended : {} as any;
   }
 
-  getValue<T>(selector: string[]) {
+  getValue<T>(selector: (string | number)[]) {
     return selector.reduce((current, key) => typeof current === 'undefined' ? undefined : current[key], this.state as any) as T;
   }
 

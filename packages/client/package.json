@@ -1,6 +1,12 @@
 {
-  "name": "client",
+  "name": "@home/client",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+  "main": "src/",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io-client": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/socket.io-client": "^1.4.32"
+  }
 }

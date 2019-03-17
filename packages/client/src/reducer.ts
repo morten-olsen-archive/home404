@@ -15,3 +15,5 @@ const reducer: Reducer = (state: {}, action) => {
     }
   }
 }
+
+export default reducer;

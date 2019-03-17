@@ -3,6 +3,7 @@ import * as reducers from './reducers';
 import LightsController from './controllers/Lights';
 import TVController from './controllers/TV';
 import MotionSensorController from './controllers/MotionSensors';
+import client from './client';
 
 const start = async () => {
   const { server, app, store } = createServer({
@@ -28,7 +29,9 @@ const start = async () => {
     reducers,
   });
 
-  app.get('/', (req, res) => {
+  app.use(client);
+
+  app.get('/state', (req, res) => {
     res.json(store.getState().extended);
   });
 

@@ -25,6 +25,15 @@ class MotionSensor extends Automation {
   onTvChanged(action: TVActions) {
 
   }
+
+  tunLightOn() {
+    const currentLight = this.getValue(['rooms', Rooms.livingroom, 'lights', 0, 'state', 'on']);
+    console.log('current', currentLight);
+  }
+
+  turnLightOff() {
+
+  }
 }
 
 export default MotionSensor;

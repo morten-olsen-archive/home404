@@ -5,7 +5,7 @@ interface Options {
   host?: string;
 }
 
-const middleware = (options: Options): Middleware => (store) => (next) => {
+const middleware = (options: Options = {}): Middleware => (store) => (next) => {
   const socket = socketio({
     host: options.host,
   });
